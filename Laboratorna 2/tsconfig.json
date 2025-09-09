@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2024",
+    "lib": ["es2024"],
+    "types": ["node"],
+    //Файлова структура
+    "rootDir": "./",
+    "outDir": "./dist",
+
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    //Корисні перевірки для навчання
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    //налагодження та структура
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Швидкість компіляції
+    "skipLibCheck": true,                  // Пропускати перевірку типів у бібліотеках
+    "isolatedModules": true,               // Кожен файл - окремий модуль
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Сумісність з ES модулями
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
