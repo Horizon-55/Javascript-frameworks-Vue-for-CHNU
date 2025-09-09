@@ -1,0 +1,23 @@
+{
+  "name": "laboratorna-1",
+  "version": "1.0.0",
+  "description": "This is a learning TypeScript",
+  "main": "variables.ts",
+  "scripts": {
+    "start": "ts-node variables.ts",
+    "build": "tsc",
+    "dev": "ts-node --watch variables.ts",
+    "build:watch": "tsc --watch",
+    "test": "ts-node variables.ts"
+  },
+  "author": "Horizon",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@types/prompt-sync": "^4.2.3",
+    "prompt-sync": "^4.2.0"
+  }
+}
