@@ -1,0 +1,11 @@
+{
+  "name": "laboratorna-2",
+  "version": "1.0.0",
+  "description": "Make the laboratorna 2",
+  "main": "OOPInterface.ts",
+  "scripts": {
+    "test": "npx ts-node OOPInterface.ts"
+  },
+  "author": "Horizon",
+  "license": "ISC"
+}
