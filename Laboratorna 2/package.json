@@ -4,8 +4,15 @@
   "description": "Make the laboratorna 2",
   "main": "OOPInterface.ts",
   "scripts": {
-    "test": "npx ts-node OOPInterface.ts"
+    "build": "tsc",
+    "start": "npx ts-node OOPInterface.ts",
+    "test": "node OOPInterface.ts",
+    "dev": "tsc --watch"
   },
   "author": "Horizon",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
 }
