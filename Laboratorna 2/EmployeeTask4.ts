@@ -8,6 +8,7 @@ class Employee {
    
    public getAnnualSalary(): number {
     return this.salary * 12;
+    
    }
 }
 
