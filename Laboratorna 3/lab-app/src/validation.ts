@@ -8,7 +8,8 @@ export class Validation {
         const year = Number(value);
         const current = new Date().getFullYear();
         if (!Number.isInteger(year)) return { valid: false, message: 'Рік має бути цілим числом' };
-        if (year < 1400 || year > current) return { valid: false, message: `Рік має бути в межах 1400–${current}` };
+        if (year < 1400 || year > current)
+            return { valid: false, message: `Рік має бути в межах 1400–${current}` };
         return { valid: true };
     }
 

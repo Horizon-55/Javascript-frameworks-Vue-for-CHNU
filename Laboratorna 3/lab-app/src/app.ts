@@ -1,9 +1,9 @@
 // import all modules here
-import {Book, User, IBook, IUser} from './models';
+import { Book, User, IBook, IUser } from './models';
 import './styles.css';
-import {LibraryService} from './services';
-import {Validation} from './validation';
-import {Modal} from './modal';
+import { LibraryService } from './services';
+import { Validation } from './validation';
+import { Modal } from './modal';
 
 // etc.
 
@@ -54,14 +54,16 @@ class App {
                 yearInput.classList.remove('is-invalid');
                 if (yearFeedback) yearFeedback.textContent = '';
             }
-            
-            if (!Validation.required(authorInput.value)) { 
+
+            if (!Validation.required(authorInput.value)) {
                 authorInput.classList.add('is-invalid');
             } else {
                 authorInput.classList.remove('is-invalid');
-                
             }
-            const isValid = Validation.required(titleInput.value) && yearRes.valid && Validation.required(authorInput.value);
+            const isValid =
+                Validation.required(titleInput.value) &&
+                yearRes.valid &&
+                Validation.required(authorInput.value);
             if (!isValid) return;
 
             const book = new Book({
@@ -128,7 +130,9 @@ class App {
             const borrowClose = document.getElementById('borrowClose');
             const borrowCancel = document.getElementById('borrowCancel');
             const borrowSave = document.getElementById('borrowSave');
-            const borrowUserIdInput = document.getElementById('borrowUserId') as HTMLInputElement | null;
+            const borrowUserIdInput = document.getElementById(
+                'borrowUserId',
+            ) as HTMLInputElement | null;
             const borrowFeedback = document.getElementById('borrowFeedback') as HTMLElement | null;
             const closeBorrow = () => {
                 if (borrowUserIdInput) borrowUserIdInput.value = '';
@@ -187,8 +191,10 @@ class App {
         const allBooks = this.service.getAll();
         const q = this.booksSearchQuery.toLowerCase();
         const filtered = q
-            ? allBooks.filter((b) =>
-                b.title.toLowerCase().includes(q) || (b.author ?? '').toLowerCase().includes(q)
+            ? allBooks.filter(
+                  (b) =>
+                      b.title.toLowerCase().includes(q) ||
+                      (b.author ?? '').toLowerCase().includes(q),
               )
             : allBooks;
 
@@ -203,7 +209,7 @@ class App {
             const author = b.author ? ` by ${b.author}` : '';
             const year = b.year ? ` (${b.year})` : '';
             const status = b.borrowedByUserId
-                ? ` — Позичено: ${users.find(u => u.id === b.borrowedByUserId)?.name ?? 'невідомо'}`
+                ? ` — Позичено: ${users.find((u) => u.id === b.borrowedByUserId)?.name ?? 'невідомо'}`
                 : '';
             meta.textContent = `${b.title}${author}${year}${status}`;
 
@@ -230,9 +236,11 @@ class App {
         });
 
         const pag = document.getElementById('booksPagination');
-        if (pag) this.renderPagination(pag, filtered.length, this.booksPage, this.booksPageSize, (p) => {
-            this.booksPage = p; this.renderBooks();
-        });
+        if (pag)
+            this.renderPagination(pag, filtered.length, this.booksPage, this.booksPageSize, (p) => {
+                this.booksPage = p;
+                this.renderBooks();
+            });
     }
 
     private renderAuthors(): void {
@@ -241,8 +249,10 @@ class App {
         list.innerHTML = '';
         const books = this.service.getAll();
         const q = this.booksSearchQuery.toLowerCase();
-        const authors = Array.from(new Set(books.map(b => (b.author ?? '').trim()).filter(Boolean)));
-        const filtered = q ? authors.filter(a => a.toLowerCase().includes(q)) : authors;
+        const authors = Array.from(
+            new Set(books.map((b) => (b.author ?? '').trim()).filter(Boolean)),
+        );
+        const filtered = q ? authors.filter((a) => a.toLowerCase().includes(q)) : authors;
         const start = (this.authorsPage - 1) * this.authorsPageSize;
         const pageItems = filtered.slice(start, start + this.authorsPageSize);
         pageItems.forEach((a) => {
@@ -253,9 +263,17 @@ class App {
         });
 
         const pag = document.getElementById('authorsPagination');
-        if (pag) this.renderPagination(pag, filtered.length, this.authorsPage, this.authorsPageSize, (p) => {
-            this.authorsPage = p; this.renderAuthors();
-        });
+        if (pag)
+            this.renderPagination(
+                pag,
+                filtered.length,
+                this.authorsPage,
+                this.authorsPageSize,
+                (p) => {
+                    this.authorsPage = p;
+                    this.renderAuthors();
+                },
+            );
     }
 
     private renderUsers(): void {
@@ -284,7 +302,13 @@ class App {
         });
     }
 
-    private renderPagination(container: Element, total: number, page: number, size: number, onChange: (p: number) => void): void {
+    private renderPagination(
+        container: Element,
+        total: number,
+        page: number,
+        size: number,
+        onChange: (p: number) => void,
+    ): void {
         const totalPages = Math.max(1, Math.ceil(total / size));
         container.innerHTML = '';
         const makeLi = (label: string, target: number, disabled = false, active = false) => {
@@ -294,7 +318,10 @@ class App {
             a.className = 'page-link';
             a.href = '#';
             a.textContent = label;
-            a.addEventListener('click', (e) => { e.preventDefault(); if (!disabled) onChange(target); });
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!disabled) onChange(target);
+            });
             li.appendChild(a);
             return li;
         };
