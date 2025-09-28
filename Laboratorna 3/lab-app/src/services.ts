@@ -6,6 +6,7 @@ export class LibraryService {
     private storageKey = 'lab-app-books';
     private usersKey = 'lab-app-users';
     private loansKey = 'lab-app-loans';
+    private userSeqKey = 'lab-app-users-seq';
 
     seedIfEmpty(): void {
         if (this.getAll().length === 0) {
@@ -21,7 +22,7 @@ export class LibraryService {
                 new User({ name: 'Артем', email: 'artemkarachevtsev@gmail.com' }),
                 new User({ name: 'Мартін', email: 'softwar@gmail.com' }),
             ];
-            Storage.setItem(this.usersKey, demoUsers);
+            demoUsers.forEach(u => this.addUser(u));
         }
     }
 
@@ -44,7 +45,7 @@ export class LibraryService {
         }
     }
 
-    remove(bookId: string): void {
+    remove(bookId: number): void {
         const all = this.getAll().filter((b) => b.id !== bookId);
         Storage.setItem(this.storageKey, all);
     }
@@ -55,22 +56,49 @@ export class LibraryService {
 
     addUser(user: IUser): void {
         const all = this.getAllUsers();
+        // призначаємо короткий числовий ID
+        if (!user.id || typeof user.id !== 'string' || user.id.length > 6) {
+            user.id = this.getNextUserId();
+        }
         all.push(user);
         Storage.setItem(this.usersKey, all);
     }
 
-    borrowBook(bookId: string, userId: string): IBook | null {
+    removeUser(userId: string): { ok: true } | { ok: false; error: string } {
+        const users = this.getAllUsers();
+        const exists = users.some((u) => u.id === userId);
+        if (!exists) return { ok: false, error: 'Користувача не знайдено' };
+        // заборонити видалення, якщо є позичені книги користувача
+        const userBooksCount = this.getAll().filter((b) => b.borrowedByUserId === userId).length;
+        if (userBooksCount > 0) return { ok: false, error: 'Користувач має позичені книги' };
+        const updated = users.filter((u) => u.id !== userId);
+        Storage.setItem(this.usersKey, updated);
+        return { ok: true };
+    }
+
+    private getNextUserId(): string {
+        const current = Storage.getItem<number>(this.userSeqKey, 1);
+        const next = current + 1;
+        Storage.setItem(this.userSeqKey, next);
+        return String(current);
+    }
+
+    borrowBook(bookId: number, userId: string): { ok: true; book: IBook } | { ok: false; error: string } {
         const all = this.getAll();
         const book = all.find((b) => b.id === bookId);
-        if (!book) return null;
-        if (book.borrowedByUserId) return null; // already taken
+        if (!book) return { ok: false, error: 'Книга не знайдена' };
+        if (book.borrowedByUserId) return { ok: false, error: 'Книгу вже позичено' };
+
+        const userBooksCount = all.filter((b) => b.borrowedByUserId === userId).length;
+        if (userBooksCount >= 3) return { ok: false, error: 'Користувач вже має 3 позичені книги' };
+
         book.borrowedByUserId = userId;
         book.borrowedAt = new Date().toISOString();
         Storage.setItem(this.storageKey, all);
-        return book;
+        return { ok: true, book };
     }
 
-    returnBook(bookId: string): IBook | null {
+    returnBook(bookId: number): IBook | null {
         const all = this.getAll();
         const book = all.find((b) => b.id === bookId);
         if (!book) return null;

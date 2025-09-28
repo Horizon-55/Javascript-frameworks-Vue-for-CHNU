@@ -1,5 +1,5 @@
-export class Library<T extends { id: string }> {
-    private items: Map<string, T> = new Map();
+export class Library<T extends { id: number }> {
+    private items: Map<number, T> = new Map();
 
     constructor(initialItems: T[] = []) {
         initialItems.forEach((it) => this.items.set(it.id, it));
@@ -9,7 +9,7 @@ export class Library<T extends { id: string }> {
         return Array.from(this.items.values());
     }
 
-    getById(id: string): T | undefined {
+    getById(id: number): T | undefined {
         return this.items.get(id);
     }
 
@@ -17,7 +17,7 @@ export class Library<T extends { id: string }> {
         this.items.set(item.id, item);
     }
 
-    update(id: string, updater: (current: T) => T): T | undefined {
+    update(id: number, updater: (current: T) => T): T | undefined {
         const current = this.items.get(id);
         if (!current) return undefined;
         const updated = updater(current);
@@ -25,7 +25,7 @@ export class Library<T extends { id: string }> {
         return updated;
     }
 
-    remove(id: string): boolean {
+    remove(id: number): boolean {
         return this.items.delete(id);
     }
 

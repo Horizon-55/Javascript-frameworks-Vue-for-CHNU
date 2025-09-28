@@ -16,7 +16,7 @@ export class Book implements IBook {
     borrowedAt?: string | null | undefined;
 
     constructor(params: { id?: number; title: string; author?: string; year?: number; borrowedByUserId?: string | null; borrowedAt?: string | null }) {
-        this.id.toString() = params.id ?? crypto.randomUUID?.() ?? Number(Date.now());
+        this.id = params.id ?? (Date.now() + Math.floor(Math.random() * 1000));
         this.title = params.title;
         this.author = params.author;
         this.year = params.year;
