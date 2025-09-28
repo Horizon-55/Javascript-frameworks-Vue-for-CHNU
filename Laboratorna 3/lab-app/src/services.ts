@@ -1,6 +1,6 @@
-import {Book, User, IBook, IUser} from './models';
-import {Library} from './library';
-import {Storage} from './storage';
+import { Book, User, IBook, IUser } from './models';
+import { Library } from './library';
+import { Storage } from './storage';
 
 export class LibraryService {
     private storageKey = 'lab-app-books';
@@ -13,7 +13,11 @@ export class LibraryService {
             const demo: IBook[] = [
                 new Book({ title: 'Code Complete', author: 'Steve McConnell', year: 2004 }),
                 new Book({ title: 'Clean Code', author: 'Роберт Мартін', year: 2008 }),
-                new Book({ title: 'The Pragmatic Programmer', author: 'Ендрю Генсон, Девід Томас', year: 1999 }),
+                new Book({
+                    title: 'The Pragmatic Programmer',
+                    author: 'Ендрю Генсон, Девід Томас',
+                    year: 1999,
+                }),
             ];
             Storage.setItem(this.storageKey, demo);
         }
@@ -22,7 +26,7 @@ export class LibraryService {
                 new User({ name: 'Артем', email: 'artemkarachevtsev@gmail.com' }),
                 new User({ name: 'Мартін', email: 'softwar@gmail.com' }),
             ];
-            demoUsers.forEach(u => this.addUser(u));
+            demoUsers.forEach((u) => this.addUser(u));
         }
     }
 
@@ -83,7 +87,10 @@ export class LibraryService {
         return String(current);
     }
 
-    borrowBook(bookId: number, userId: string): { ok: true; book: IBook } | { ok: false; error: string } {
+    borrowBook(
+        bookId: number,
+        userId: string,
+    ): { ok: true; book: IBook } | { ok: false; error: string } {
         const all = this.getAll();
         const book = all.find((b) => b.id === bookId);
         if (!book) return { ok: false, error: 'Книга не знайдена' };

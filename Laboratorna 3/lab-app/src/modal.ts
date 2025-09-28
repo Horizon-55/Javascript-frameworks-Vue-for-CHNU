@@ -17,7 +17,7 @@ export class Modal {
         backdrop.className = 'modal-backdrop fade show';
         backdrop.setAttribute('data-backdrop', 'true');
         document.body.appendChild(backdrop);
-        this.onShowCallbacks.forEach(cb => cb());
+        this.onShowCallbacks.forEach((cb) => cb());
     }
 
     hide(): void {
@@ -26,9 +26,13 @@ export class Modal {
         document.body.classList.remove('modal-open');
         const backdrop = document.querySelector('.modal-backdrop');
         if (backdrop && backdrop.parentElement) backdrop.parentElement.removeChild(backdrop);
-        this.onHideCallbacks.forEach(cb => cb());
+        this.onHideCallbacks.forEach((cb) => cb());
     }
 
-    onShow(cb: () => void): void { this.onShowCallbacks.push(cb); }
-    onHide(cb: () => void): void { this.onHideCallbacks.push(cb); }
+    onShow(cb: () => void): void {
+        this.onShowCallbacks.push(cb);
+    }
+    onHide(cb: () => void): void {
+        this.onHideCallbacks.push(cb);
+    }
 }
