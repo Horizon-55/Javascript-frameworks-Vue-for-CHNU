@@ -1,21 +1,27 @@
 export interface IBook {
-    id: string;
+    id: number;
     title: string;
     author?: string;
     year?: number;
+    borrowedByUserId?: string | null;
+    borrowedAt?: string | null; // ISO string
 }
 
 export class Book implements IBook {
-    id: string;
+    id: number;
     title: string;
     author?: string | undefined;
     year?: number | undefined;
+    borrowedByUserId?: string | null | undefined;
+    borrowedAt?: string | null | undefined;
 
-    constructor(params: { id?: string; title: string; author?: string; year?: number }) {
-        this.id = params.id ?? crypto.randomUUID?.() ?? String(Date.now());
+    constructor(params: { id?: number; title: string; author?: string; year?: number; borrowedByUserId?: string | null; borrowedAt?: string | null }) {
+        this.id.toString() = params.id ?? crypto.randomUUID?.() ?? Number(Date.now());
         this.title = params.title;
         this.author = params.author;
         this.year = params.year;
+        this.borrowedByUserId = params.borrowedByUserId ?? null;
+        this.borrowedAt = params.borrowedAt ?? null;
     }
 }
 
