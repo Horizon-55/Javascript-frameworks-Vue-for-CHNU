@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Система управління бібліотекою</title>
+    <link rel="stylesheet" href="./libs/bootstrap.css" />
+  </head>
+  <body>
+    <h2 class="text-center">Система управління бібліотекою</h2>
+    <div class="container my-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="h4 mb-4">Додати Книгу</h2>
+          <form id="addBookForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                placeholder="Назва книги"
+                required
+              />
+              <div class="invalid-feedback">Це поле є обов'язковим</div>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="author"
+                placeholder="Автор"
+              />
+              <div class="invalid-feedback">Поле автор є обов'язковим</div>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="year"
+                placeholder="Рік видання"
+                inputmode="numeric"
+              />
+              <div class="invalid-feedback" id="yearFeedback"></div>
+            </div>
+            <button type="submit" class="btn btn-success">Додати Книгу</button>
+          </form>
+        </div>
+      </div>
+      <div class="card shadow-sm mt-4">
+        <div class="card-body">
+          <h2 class="h4 mb-4">Додати Користувача</h2>
+          <form id="addUserForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="userName"
+                placeholder="Ім'я"
+                required
+              />
+              <div class="invalid-feedback">Вкажіть ім'я</div>
+            </div>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="userEmail"
+                placeholder="Email"
+                required
+              />
+              <div class="invalid-feedback" id="emailFeedback">
+                Некоректний email
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success">
+              Додати Користувача
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./dist/bundle.js"></script>
+  </body>
+</html>
