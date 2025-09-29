@@ -1,5 +1,5 @@
 // import all modules here
-import { Book, User, IBook, IUser } from './models';
+import { Book, User, IBook } from './models';
 import './styles.css';
 import { LibraryService } from './services';
 import { Validation } from './validation';
@@ -165,7 +165,9 @@ class App {
                 this.renderBooks();
                 this.showInfo(`Книгу «${result.book.title}» позичено користувачу з ID ${userId}.`);
             });
-        } catch {}
+        } catch {
+            console.error('Failed to initialize modal');
+        }
     }
 
     private render(): void {
