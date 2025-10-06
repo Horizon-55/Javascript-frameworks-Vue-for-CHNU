@@ -1,5 +1,38 @@
-Laboratorna 1/node_modules
-Laboratorna 2/node_modules
-#ignore core files 
-package-lock.json
+# Залежності
+node_modules/
+**/node_modules/
+
+# Lock файли (залишаємо в репозиторії для відтворюваних збірок)
+
+# Build директорії
+dist/
+**/dist/
+build/
+**/build/
+
+# Тимчасові файли TypeScript
+*.tsbuildinfo
+
+# Логи
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE налаштування
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS файли
+.DS_Store
+Thumbs.db
+
+# Згенеровані файли
 Laboratorna 2/LibraryTask6.js
+
+# Кеш
+.cache/
+.eslintcache
