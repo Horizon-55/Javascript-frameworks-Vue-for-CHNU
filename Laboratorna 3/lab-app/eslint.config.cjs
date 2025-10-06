@@ -35,9 +35,4 @@ module.exports = [
             ...config,
             files: ['**/*.ts'],
         })),
-    {
-        extends: './tsconfig.json',
-        compilerOptions: { types: ['mocha'] },
-        include: ['src/**/*.ts', 'tests/**/*.ts'],
-    },
 ];
