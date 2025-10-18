@@ -1,0 +1,84 @@
+.user-list-container {
+  width: 100%;
+}
+
+.user-count {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4a5568;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.user-count strong {
+  color: #667eea;
+  font-size: 1.4rem;
+}
+
+.user-list {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Десктоп: 3 колонки */
+@media (min-width: 1200px) {
+  .user-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Середні екрани: 2 колонки */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .user-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Мобільні пристрої: 1 колонка */
+@media (max-width: 767px) {
+  .user-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .user-count {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .user-count strong {
+    font-size: 1.2rem;
+  }
+}
+
+/* Стан порожнього списку */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(253, 203, 110, 0.3);
+}
+
+.empty-state p {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 3rem 1.5rem;
+  }
+
+  .empty-state p {
+    font-size: 1.2rem;
+  }
+}
+

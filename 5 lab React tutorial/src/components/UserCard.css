@@ -1,0 +1,172 @@
+.user-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.user-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Кольорові теми залежно від віку */
+.user-card.age-young .user-card-header {
+  background: linear-gradient(135deg, #667eea 0%, #4fc3f7 100%);
+}
+
+.user-card.age-adult .user-card-header {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.user-card.age-middle .user-card-header {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.user-card.age-senior .user-card-header {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.user-card-header {
+  position: relative;
+  padding: 2rem 1.5rem 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover .user-photo {
+  transform: scale(1.1);
+}
+
+.user-age-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 1.4rem;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.user-position {
+  color: #718096;
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem 0;
+  font-weight: 500;
+}
+
+.user-hobbies {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.hobbies-title {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hobbies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hobby-item {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.hobby-item:hover {
+  transform: scale(1.05);
+}
+
+.age-info {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background: #48bb78;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+}
+
+/* Планшети */
+@media (max-width: 1024px) {
+  .user-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-name {
+    font-size: 1.2rem;
+  }
+}
+
+/* Мобільні пристрої */
+@media (max-width: 768px) {
+  .user-card-header {
+    padding: 1.5rem 1rem 4rem;
+  }
+
+  .user-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .user-name {
+    font-size: 1.1rem;
+  }
+
+  .user-card-body {
+    padding: 1.25rem;
+  }
+}
+
